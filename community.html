@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旅の掲示板 | TabiHub</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="icon" href="favicon.png">
+    
+    <style>
+        :root {
+            --primary-color: #0ea5e9;
+            --dark-blue: #0f172a;
+            --soft-bg: #f8fafc;
+        }
+
+        body { font-family: 'Noto Sans JP', sans-serif; background-color: var(--soft-bg); color: #334155; }
+
+        /* --- 統一ナビゲーション --- */
+        .navbar { 
+            background-color: rgba(15, 23, 42, 0.95); 
+            backdrop-filter: blur(10px); 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .nav-link { font-weight: 500; transition: 0.3s; }
+        .nav-link.active { color: var(--primary-color) !important; font-weight: 700; }
+
+        /* --- カテゴリー・スクロール --- */
+        .category-scroll {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 10px 0;
+            scrollbar-width: none;
+        }
+        .category-scroll::-webkit-scrollbar { display: none; }
+        .category-pill {
+            white-space: nowrap;
+            padding: 8px 20px;
+            border-radius: 50px;
+            background: white;
+            color: #64748b;
+            font-weight: bold;
+            border: 1px solid #e2e8f0;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .category-pill:hover, .category-pill.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* --- 投稿カード --- */
+        .post-card {
+            background: white;
+            border-radius: 24px;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            margin-bottom: 24px;
+            transition: 0.3s;
+        }
+        .post-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #94a3b8;
+        }
+
+        .post-bubble {
+            background: #f1f5f9;
+            padding: 18px 22px;
+            border-radius: 4px 20px 20px 20px;
+            position: relative;
+        }
+
+        /* --- サイドバー --- */
+        .sidebar-card {
+            border: none;
+            border-radius: 24px;
+            padding: 24px;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+        }
+
+        /* --- 浮遊投稿ボタン --- */
+        .btn-post-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.4);
+        }
+
+        footer { background: var(--dark-blue); color: rgba(255,255,255,0.6); padding: 60px 0; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <i class="bi bi-compass-fill me-2 fs-3 text-info"></i>
+                <span class="fs-3 fw-bolder">TabiHub</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link" href="index.html">ホーム</a></li>
+                    <li class="nav-item"><a class="nav-link" href="spot-list.html">スポット検索</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ranking.html">ランキング</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="community.html">旅の掲示板</a></li>
+                </ul>
+                <div class="ms-auto d-flex gap-2">
+                    <a href="login.html" class="btn btn-outline-light px-4 rounded-pill fw-bold">ログイン</a>
+                    <a href="signup.html" class="btn btn-info text-white px-4 rounded-pill fw-bold shadow-sm">新規登録</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-white border-bottom py-5 mb-5">
+        <div class="container text-center">
+            <h1 class="fw-bold animate__animated animate__fadeIn">旅のコミュニティ</h1>
+            <p class="text-muted">リアルな旅の体験談や質問をシェアしよう</p>
+            
+            <div class="category-scroll mt-4 d-flex justify-content-md-center">
+                <div class="category-pill active">すべて</div>
+                <div class="category-pill">#質問・相談</div>
+                <div class="category-pill">#写真共有</div>
+                <div class="category-pill">#ひとり旅</div>
+                <div class="category-pill">#グルメ情報</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container pb-5">
+        <div class="row">
+            <div class="col-lg-8">
+                
+                <article class="post-card p-4 animate__animated animate__fadeInUp">
+                    <div class="d-flex gap-3">
+                        <div class="user-avatar flex-shrink-0"><i class="bi bi-person"></i></div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between mb-2">
+                                <h6 class="fw-bold mb-0">旅好きタロウ <span class="text-muted small fw-normal ms-2">2時間前</span></h6>
+                                <span class="badge bg-info-subtle text-info rounded-pill">質問・相談</span>
+                            </div>
+                            <div class="post-bubble">
+                                <p class="mb-0">来月、金沢に行きます！おすすめの穴場カフェがあれば教えてください☕️</p>
+                            </div>
+                            <div class="mt-3 d-flex gap-4 text-muted small">
+                                <span><i class="bi bi-chat-left-dots me-1"></i> 8</span>
+                                <span><i class="bi bi-heart me-1"></i> 15</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="post-card p-4 animate__animated animate__fadeInUp" style="animation-delay: 0.1s;">
+                    <div class="d-flex gap-3">
+                        <div class="user-avatar flex-shrink-0 text-info"><i class="bi bi-camera"></i></div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between mb-2">
+                                <h6 class="fw-bold mb-0">絶景ハンター <span class="text-muted small fw-normal ms-2">5時間前</span></h6>
+                                <span class="badge bg-success-subtle text-success rounded-pill">写真共有</span>
+                            </div>
+                            <div class="post-bubble">
+                                <p class="mb-3">今朝の富士山、空気が澄んでいて最高でした🗻</p>
+                                <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800" class="img-fluid rounded-4 shadow-sm">
+                            </div>
+                            <div class="mt-3 d-flex gap-4 text-muted small">
+                                <span><i class="bi bi-chat-left-dots me-1"></i> 3</span>
+                                <span><i class="bi bi-heart-fill text-danger me-1"></i> 42</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+            <div class="col-lg-4 d-none d-lg-block">
+                <div class="sidebar-card sticky-top" style="top: 100px;">
+                    <h6 class="fw-bold mb-4"><i class="bi bi-tags-fill text-info me-2"></i>注目のタグ</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge bg-light text-secondary rounded-pill p-2 px-3">#金沢グルメ</span>
+                        <span class="badge bg-light text-secondary rounded-pill p-2 px-3">#冬の温泉</span>
+                        <span class="badge bg-light text-secondary rounded-pill p-2 px-3">#サウナ旅</span>
+                        <span class="badge bg-light text-secondary rounded-pill p-2 px-3">#格安航空券</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-info btn-post-float text-white">
+        <i class="bi bi-plus-lg me-2"></i>投稿する
+    </button>
+
+    <footer>
+        <div class="container text-center">
+            <h4 class="fw-bold mb-4 text-white">TabiHub</h4>
+            <p class="small">&copy; 2026 TabiHub Inc. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新規会員登録 | TabiHub</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="icon" href="favicon.png">
+    <style>
+        :root {
+            --primary-color: #0ea5e9;
+            --dark-blue: #0f172a;
+            --soft-bg: #f1f5f9;
+        }
+
+        body { 
+            font-family: 'Noto Sans JP', sans-serif; 
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- 統一ナビゲーション --- */
+        .navbar { 
+            background-color: rgba(15, 23, 42, 0.95); 
+            backdrop-filter: blur(10px); 
+        }
+
+        /* --- 登録カード --- */
+        .signup-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+        }
+
+        .signup-card {
+            background: white;
+            border-radius: 30px;
+            border: none;
+            box-shadow: 0 20px 60px rgba(15, 23, 42, 0.1);
+            width: 100%;
+            max-width: 550px; /* 登録項目が多いので少し広めに */
+            overflow: hidden;
+        }
+
+        .signup-header {
+            background: var(--dark-blue);
+            padding: 40px;
+            text-align: center;
+            color: white;
+        }
+
+        .signup-body {
+            padding: 40px;
+        }
+
+        .form-control, .form-select {
+            border-radius: 12px;
+            padding: 12px 20px;
+            border: 1px solid #e2e8f0;
+            background-color: #f8fafc;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        .btn-signup {
+            background: var(--primary-color);
+            border: none;
+            border-radius: 12px;
+            padding: 14px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-signup:hover {
+            background: #0284c7;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(14, 165, 233, 0.2);
+        }
+
+        .terms-box {
+            font-size: 0.85rem;
+            color: #64748b;
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        footer { background: var(--dark-blue); color: rgba(255,255,255,0.6); padding: 40px 0; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <i class="bi bi-compass-fill me-2 fs-3 text-info"></i>
+                <span class="fs-3 fw-bolder">TabiHub</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">ホーム</a></li>
+                    <li class="nav-item"><a class="nav-link" href="spot-list.html">スポット検索</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ranking.html">ランキング</a></li>
+                    <li class="nav-item"><a class="nav-link" href="community.html">旅の掲示板</a></li>
+                </ul>
+                <div class="ms-auto d-flex gap-2">
+                    <a href="login.html" class="btn btn-outline-light px-4 rounded-pill fw-bold">ログイン</a>
+                    <a href="signup.html" class="btn btn-info text-white px-4 rounded-pill fw-bold shadow-sm">新規登録</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="signup-container">
+        <div class="signup-card animate__animated animate__fadeInUp">
+            <div class="signup-header">
+                <h3 class="fw-bold mb-0">旅の仲間になろう！</h3>
+                <p class="small opacity-75 mt-2 mb-0">無料登録で、あなただけの旅ログや掲示板が使えます</p>
+            </div>
+            
+            <div class="signup-body">
+                <form>
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-12">
+                            <label class="form-label small fw-bold">ニックネーム</label>
+                            <input type="text" class="form-control" placeholder="旅人さん">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold">メールアドレス</label>
+                        <input type="email" class="form-control" placeholder="example@tabihub.jp">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label small fw-bold">パスワード</label>
+                        <input type="password" class="form-control" placeholder="8文字以上の半角英数字">
+                        <div class="form-text mt-1" style="font-size: 0.75rem;">セキュリティのため、記号を混ぜることを推奨します。</div>
+                    </div>
+
+                    <div class="terms-box">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="agreeTerms">
+                            <label class="form-check-label" for="agreeTerms">
+                                <a href="#" class="text-info text-decoration-none fw-bold">利用規約</a> と <a href="#" class="text-info text-decoration-none fw-bold">プライバシーポリシー</a> に同意します。
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-info btn-signup w-100 text-white mb-4">アカウントを作成する</button>
+                    
+                    <div class="text-center position-relative mb-4">
+                        <hr class="text-muted">
+                        <span class="position-absolute top-50 start-50 translate-middle bg-white px-3 small text-muted">SNSアカウントで登録</span>
+                    </div>
+
+                    <div class="d-flex gap-2 mb-4">
+                        <a href="#" class="btn btn-outline-secondary w-50 rounded-pill py-2 small fw-bold">
+                            <i class="bi bi-google me-1"></i> Google
+                        </a>
+                        <a href="#" class="btn btn-outline-secondary w-50 rounded-pill py-2 small fw-bold">
+                            <i class="bi bi-apple me-1"></i> Apple
+                        </a>
+                    </div>
+                </form>
+
+                <div class="text-center mt-4">
+                    <p class="small text-muted">すでにアカウントをお持ちですか？</p>
+                    <a href="login.html" class="text-info fw-bold text-decoration-none">ログイン画面へ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container text-center">
+            <p class="small mb-0">&copy; 2026 TabiHub Inc. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

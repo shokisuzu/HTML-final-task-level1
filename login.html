@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ログイン | TabiHub</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="icon" href="favicon.png">
+    <style>
+        :root {
+            --primary-color: #0ea5e9;
+            --dark-blue: #0f172a;
+            --soft-bg: #f1f5f9;
+        }
+
+        body { 
+            font-family: 'Noto Sans JP', sans-serif; 
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- 統一ナビゲーション --- */
+        .navbar { 
+            background-color: rgba(15, 23, 42, 0.95); 
+            backdrop-filter: blur(10px); 
+        }
+
+        /* --- ログインカード --- */
+        .login-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .login-card {
+            background: white;
+            border-radius: 30px;
+            border: none;
+            box-shadow: 0 20px 60px rgba(15, 23, 42, 0.1);
+            width: 100%;
+            max-width: 450px;
+            overflow: hidden;
+        }
+
+        .login-header {
+            background: var(--dark-blue);
+            padding: 40px;
+            text-align: center;
+            color: white;
+        }
+
+        .login-body {
+            padding: 40px;
+        }
+
+        .form-control {
+            border-radius: 12px;
+            padding: 12px 20px;
+            border: 1px solid #e2e8f0;
+            background-color: #f8fafc;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        .btn-login {
+            background: var(--primary-color);
+            border: none;
+            border-radius: 12px;
+            padding: 14px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-login:hover {
+            background: #0284c7;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(14, 165, 233, 0.2);
+        }
+
+        .social-login {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #475569;
+            transition: 0.2s;
+            margin-bottom: 12px;
+        }
+
+        .social-login:hover {
+            background-color: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        footer { background: var(--dark-blue); color: rgba(255,255,255,0.6); padding: 40px 0; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <i class="bi bi-compass-fill me-2 fs-3 text-info"></i>
+                <span class="fs-3 fw-bolder">TabiHub</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">ホーム</a></li>
+                    <li class="nav-item"><a class="nav-link" href="spot-list.html">スポット検索</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ranking.html">ランキング</a></li>
+                    <li class="nav-item"><a class="nav-link" href="community.html">旅の掲示板</a></li>
+                </ul>
+                <div class="ms-auto d-flex gap-2">
+                    <a href="login.html" class="btn btn-outline-light px-4 rounded-pill fw-bold">ログイン</a>
+                    <a href="signup.html" class="btn btn-info text-white px-4 rounded-pill fw-bold shadow-sm">新規登録</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="login-container">
+        <div class="login-card animate__animated animate__zoomIn">
+            <div class="login-header">
+                <h3 class="fw-bold mb-0">おかえりなさい！</h3>
+                <p class="small opacity-75 mt-2 mb-0">TabiHubにログインして旅を続けよう</p>
+            </div>
+            
+            <div class="login-body">
+                <form>
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold">メールアドレス</label>
+                        <input type="email" class="form-control" placeholder="example@tabihub.jp">
+                    </div>
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between">
+                            <label class="form-label small fw-bold">パスワード</label>
+                            <a href="#" class="small text-info text-decoration-none">忘れた方はこちら</a>
+                        </div>
+                        <input type="password" class="form-control" placeholder="••••••••">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-info btn-login w-100 text-white mb-4">ログイン</button>
+                    
+                    <div class="text-center position-relative mb-4">
+                        <hr class="text-muted">
+                        <span class="position-absolute top-50 start-50 translate-middle bg-white px-3 small text-muted">または</span>
+                    </div>
+
+                    <a href="#" class="social-login">
+                        <i class="bi bi-google text-danger"></i> Googleでログイン
+                    </a>
+                    <a href="#" class="social-login">
+                        <i class="bi bi-apple text-dark"></i> Appleでログイン
+                    </a>
+                </form>
+
+                <div class="text-center mt-5">
+                    <p class="small text-muted">アカウントをお持ちでないですか？</p>
+                    <a href="signup.html" class="text-info fw-bold text-decoration-none">新規会員登録（無料）</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container text-center">
+            <p class="small mb-0">&copy; 2026 TabiHub Inc. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スポット詳細 | TabiHub</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="icon" href="favicon.png">
+    <style>
+        :root {
+            --primary-color: #0ea5e9;
+            --dark-blue: #0f172a;
+            --soft-bg: #f8fafc;
+        }
+
+        body { font-family: 'Noto Sans JP', sans-serif; background-color: var(--soft-bg); color: #334155; }
+
+        /* --- 統一ナビゲーション --- */
+        .navbar { 
+            background-color: rgba(15, 23, 42, 0.95); 
+            backdrop-filter: blur(10px); 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .nav-link { font-weight: 500; transition: 0.3s; }
+
+        /* --- スポットヒーローエリア --- */
+        .spot-hero {
+            height: 60vh;
+            min-height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), 
+                        url('images/sirakawa.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            padding-bottom: 60px;
+            color: white;
+        }
+
+        /* --- コンテンツエリア --- */
+        .detail-card {
+            background: white;
+            border-radius: 30px;
+            margin-top: -50px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .info-box {
+            background: #f1f5f9;
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 300px;
+            background: #e2e8f0;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-weight: bold;
+        }
+
+        /* --- 口コミセクション --- */
+        .review-item {
+            border-bottom: 1px solid #f1f5f9;
+            padding: 20px 0;
+        }
+        .review-item:last-child { border-bottom: none; }
+
+        footer { background: var(--dark-blue); color: rgba(255,255,255,0.6); padding: 60px 0; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <i class="bi bi-compass-fill me-2 fs-3 text-info"></i>
+                <span class="fs-3 fw-bolder">TabiHub</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link" href="index.html">ホーム</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="spot-list.html">スポット検索</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ranking.html">ランキング</a></li>
+                    <li class="nav-item"><a class="nav-link" href="community.html">旅の掲示板</a></li>
+                </ul>
+                <div class="ms-auto d-flex gap-2">
+                    <button class="btn btn-outline-light px-4 rounded-pill fw-bold">ログイン</button>
+                    <button class="btn btn-info text-white px-4 rounded-pill fw-bold">新規登録</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="spot-hero">
+        <div class="container animate__animated animate__fadeIn">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb text-white-50 small">
+                    <li class="breadcrumb-item"><a href="spot-list.html" class="text-white-50">スポット検索</a></li>
+                    <li class="breadcrumb-item active text-white" aria-current="page">岐阜県</li>
+                </ol>
+            </nav>
+            <h1 class="display-4 fw-bold mb-0">白川郷 合掌造り集落</h1>
+            <p class="fs-5 mt-2"><i class="bi bi-geo-alt-fill me-2"></i>岐阜県 大野郡 白川村</p>
+        </div>
+    </header>
+
+    <main class="container pb-5">
+        <div class="detail-card animate__animated animate__fadeInUp">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <span class="badge bg-info text-white rounded-pill px-4 py-2">自然・歴史</span>
+                        <div class="text-warning fs-5">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-half"></i>
+                            <span class="text-dark fw-bold ms-2">4.9</span>
+                        </div>
+                    </div>
+
+                    <h3 class="fw-bold mb-4">日本の原風景に出会える、世界遺産の村</h3>
+                    <p class="text-secondary leading-relaxed mb-5">
+                        ユネスコ世界文化遺産に登録されている白川郷は、独特の「合掌造り」という建築様式が今なお残る貴重な集落です。
+                        四季折々の表情があり、春は桜、夏は瑞々しい緑、秋は紅葉、そして冬には一面の銀世界とライトアップが楽しめます。
+                        集落内には実際に住まわれている家々もあり、日本の伝統的な暮らしを間近に感じることができます。
+                    </p>
+
+                    <h5 class="fw-bold mb-3 mt-5">基本情報</h5>
+                    <div class="info-box mb-5">
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <div class="small text-muted mb-1">住所</div>
+                                <div class="fw-bold">岐阜県大野郡白川村荻町</div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="small text-muted mb-1">アクセス</div>
+                                <div class="fw-bold">JR高山駅からバスで約50分</div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="small text-muted mb-1">定休日</div>
+                                <div class="fw-bold">なし（施設により異なる）</div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="small text-muted mb-1">平均予算</div>
+                                <div class="fw-bold">無料（一部有料施設あり）</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5 class="fw-bold mb-4">ユーザーの口コミ (124件)</h5>
+                    <div class="review-item">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div class="fw-bold">旅好きユキ</div>
+                            <div class="text-warning small"><i class="bi bi-star-fill"></i> 5.0</div>
+                        </div>
+                        <p class="small text-muted mb-0">冬のライトアップに行きました。寒かったですが、それ以上に美しさに感動しました！</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 mt-5 mt-lg-0">
+                    <div class="sticky-top" style="top: 100px;">
+                        <div class="mb-4">
+                            <img src="images/sirakawa2.png" alt="周辺マップ" class="img-fluid rounded-4 shadow-sm" style="width: 100%; height: 300px; object-fit: cover;">
+                            </div>
+                        </div>
+                        <button class="btn btn-info w-100 text-white fw-bold py-3 rounded-pill shadow mb-3">
+                            <i class="bi bi-heart-fill me-2"></i>お気に入りに追加
+                        </button>
+                        <button class="btn btn-outline-secondary w-100 fw-bold py-3 rounded-pill">
+                            <i class="bi bi-share-fill me-2"></i>友達にシェア
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container text-center">
+            <h4 class="fw-bold mb-4 text-white">TabiHub</h4>
+            <p class="small">&copy; 2026 TabiHub Inc. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
